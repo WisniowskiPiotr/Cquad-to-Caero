@@ -401,7 +401,7 @@ int main(int argc, char* argv[])
 	// fill data for ROD
 	Concurrency::parallel_for (size_t(0), A_ROD_tab.size(), [&](size_t j)
 	{
-		A_ROD_tab[j].fill_up_grids(GRID_tab);	// wype³nia element danymi z grid
+		A_ROD_tab[j].fill_up_grids(GRID_tab);	// get data from grids
 		for(size_t i=0; i<DMI_tab.size(); i++)
 			A_ROD_tab[j].calculate_dmi(DMI_tab[i]);
 	});
@@ -410,19 +410,18 @@ int main(int argc, char* argv[])
 	// calculate data for CQUAD
 	Concurrency::parallel_for (size_t(0), CAERO_tab.size(), [&](size_t j)
 	{
-		CAERO_tab[j].fill_up_grids(GRID_tab);	// wype³nia element danymi z grid 
-		CAERO_tab[j].sort_grids(); 			// sortuje gridy w kolejnoœci (1 i 4 s¹ z przodu - normalny zachowany)
-		CAERO_tab[j].fill_up_rods(A_ROD_tab);	// wype³nia element damymi z rodów
-		CAERO_tab[j].calculate();				// oblicza
+		CAERO_tab[j].fill_up_grids(GRID_tab);	// get data from grids
+		CAERO_tab[j].sort_grids(); 			// sort grids. 1st and 4th has to be in front without changing normal
+		CAERO_tab[j].fill_up_rods(A_ROD_tab);	// get data from grids
+		CAERO_tab[j].calculate();			
 	});
 	std::cout<<"\tCAERO1 calculated."<<std::endl;
 
-	// wypisywanie
     std::cout << " Writing...\n" ;
 	std::sort(CAERO_tab.begin(),CAERO_tab.end(),sort_caero);
-	std::vector<size_t> lines_to_skip=get_lines_to_skip(CAERO_tab,A_ROD_tab);// finding all lines to skip
+	std::vector<size_t> lines_to_skip=get_lines_to_skip(CAERO_tab,A_ROD_tab); // finding all lines to skip
 
-	//creating new bdf
+	// creating new bdf
 	std::vector<std::string> file_names_to_write;
 	file_names_to_write.push_back(params.get_file_name()+".aero_bdf");
 	file_names_to_write.push_back(params.get_file_name()+".HVASCI");
@@ -430,7 +429,6 @@ int main(int argc, char* argv[])
 	file_names_to_write.push_back(params.get_file_name()+".fa2j");
 	file_names_to_write.push_back(params.get_file_name()+".wkk");
 	
-
 	// write
 	write_new_bdf(file_names_to_write[0],CAERO_tab, AERO_SID,whole_bdf,lines_to_skip,file_names_to_write,params);
 	write_HV_DMI(file_names_to_write[1],CAERO_tab);
