@@ -4,7 +4,7 @@ Program translates MSC Nastran Cquad elements with 1D Crod on leading edge to CA
 Copyright (C) 2018 Wiśniowski Piotr
 
 Please read [Static stability calculation of aircraft](./Documents/StaticStabilityCalculationOfAircraft.pdf) for explained usage of this software.
-Additionaly read [Dynamic stability calculation of aircraft](./Documents/DynamicStabilityAnalysisOfAirplane.pdf) for futher reading regarding usage of results of this analysis.
+Additionaly read [Dynamic stability calculation of aircraft](./Documents/DynamicStabilityAnalysisOfAirplane.pdf) for further reading regarding usage of results of this analysis.
 
 Main method is in Cquad_to_Aero.cpp. Typical parameter values are set by default.
 
