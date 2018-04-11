@@ -83,11 +83,6 @@ void write_new_bdf(std::string file_bdf_name,std::vector<Aero_class> caero_tab,s
 	
 	fileExists(file_bdf_name);
 	file_bdf.open(file_bdf_name.c_str());
-	file_bdf.flush();
-
-	//std::cout.unsetf(std::ios_base::floatfield);
-	//file_bdf<<"$"<<std::cout.fixed<< std::endl;
-	//file_bdf.flush();
 	file_bdf<<std::setprecision(5);
 	file_bdf.flush();
 	
