@@ -11,7 +11,7 @@ Additionally read [Dynamic stability calculation of aircraft](./Documents/Dynami
 
 #### Input model
 [Example of input file](./Example/Whole_aero.bdf) can be found in *Example* folder. 
-This is basically any valid MSC Nastran aerodynamic input file (with structural part) with additional with some additional modeling tricks:
+This is basically any valid MSC Nastran aerodynamic input file (along with structural part) with some additional modeling tricks:
 - All aerodynamic surfaces are modeled by using standard *CQUAD4* elements on center surface.
   - All these elements must have same normal vector.
   - All these elements must have associated *PAERO1* properties.
